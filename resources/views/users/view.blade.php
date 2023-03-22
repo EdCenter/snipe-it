@@ -276,7 +276,11 @@
                         {{ trans('general.company') }}
                       </div>
                       <div class="col-md-9">
-                        {{ $user->company->name }}
+                          @can('view', \App\Models\Company::class)
+                            <a href="{{ route('companies.show', ['company' => $user->company->id]) }}">{{ $user->company->name }}</a>
+                          @else
+                             {{ $user->company->name }}
+                          @endcan
                       </div>
 
                     </div>
